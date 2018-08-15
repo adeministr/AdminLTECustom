@@ -1,0 +1,137 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    ViewData["Title"] = "Home Page";
+}
+
+@section scripts
+    {
+<environment names="Development">
+    <script>
+        $(function () {
+            var editButton = '<a class="btn btn-primary btn-sm" id="btnedit" name="btnedit"><i class="fa fa-edit fa-sm"></i></a>'
+            var deleteButton = '<a class="btn btn-primary btn-sm"   id="btndelete" name="btndelete"><i class="fa fa-trash-o fa-sm"></i></a>'
+            var action = editButton + ' ' + deleteButton
+            var data = [
+                {
+                    "action": action,
+                    "position": "System Architect",
+                    "salary": "$3,120",
+                    "start_date": "2011/04/25",
+                    "office": "Edinburgh",
+                    "extn": 5421
+                },
+                {
+                    "action": action,
+                    "position": "Director",
+                    "salary": "5300",
+                    "start_date": "2011/07/25",
+                    "office": "Edinburgh",
+                    "extn": "8422"
+                },
+            ]
+            var colunm = [
+                { title: "Action", data: "action", width: "20%", orderable: false },
+                { title: "position", data: "position", width: "20%" },
+                { title: "office", data: "office", width: "20%" },
+                { title: "extn", data: "extn", width: "20%" },
+                { title: "start_date", data: "start_date", width: "20%" },
+                { title: "salary", data: "salary", width: "20%" }
+            ]
+            $('#example1').DataTable({
+                scrollX: true,
+                data: data,
+                columns: colunm
+            })
+            $('#example2').DataTable({
+                'paging': true,
+                'lengthChange': false,
+                'searching': false,
+                'ordering': true,
+                'info': true,
+                'autoWidth': false
+            })
+        })
+    </script>
+
+</environment>
+
+    <environment names="Staging,Production">
+        <script src="~/view-resources/Views/Customer/Index.min.js" asp-append-version="true"></script>
+    </environment>
+}
+<div class="row">
+    <div class="col-xs-12">
+        <!-- /.box -->
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Data Table With Full Features</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <button type="button" class="btn btn-primary" id="btnadd" name="btnadd" data-toggle="modal" data-target="#modal-create-customer"><i class="fa fa-plus"> Add</i></button>
+                <div class="box-body">
+                    <table id="example1" class="table table-bordered" style="width:100%">
+                    </table>
+                </div>
+            </div>
+
+
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+    <!-- /.col -->
+</div>
+<div class="modal fade" id="modal-create-customer" data-backdrop="static" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Create Customer</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form role="form">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <label>Select</label>
+                            <select class="form-control">
+                                <option>option 1</option>
+                                <option>option 2</option>
+                                <option>option 3</option>
+                                <option>option 4</option>
+                                <option>option 5</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputFile">File input</label>
+                            <input type="file" id="exampleInputFile">
+                            <p class="help-block">Example block-level help text here.</p>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> Check me out
+                            </label>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
